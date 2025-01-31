@@ -16,6 +16,7 @@ const authRoutes = require("./routes/authRoutes");
 const suppliesRoutes = require("./routes/suppliesRoutes");
 const smogImportRoutes = require("./routes/smogImportRoutes");
 const frontendRoutes = require("./routes/frontendRoutes");
+const diseaseRoutes = require("./routes/dashboardRoutes");
 const activitiesRoutes = require("./routes/activities");
 const measure1Routes = require("./routes/measure1");
 const measure2Routes = require("./routes/measure2");

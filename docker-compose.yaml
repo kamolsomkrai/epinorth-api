@@ -6,7 +6,7 @@ services:
     container_name: epinorth-api
     restart: unless-stopped
     ports:
-      - "3007:3000"
+      - "3009:3000"
     env_file:
       - .env
     volumes:

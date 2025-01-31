@@ -8,20 +8,8 @@ const {
   authenticateTokenFromHeader,
   authenticateTokenFromCookies,
 } = require("./middlewares/authenticateToken");
-const {
-  externalApiLimiter,
-  generalApiLimiter,
-} = require("./middlewares/rateLimiter");
-const authRoutes = require("./routes/authRoutes");
-const suppliesRoutes = require("./routes/suppliesRoutes");
-const smogImportRoutes = require("./routes/smogImportRoutes");
-const frontendRoutes = require("./routes/frontendRoutes");
+const { generalApiLimiter } = require("./middlewares/rateLimiter");
 const diseaseRoutes = require("./routes/dashboardRoutes");
-const activitiesRoutes = require("./routes/activities");
-const measure1Routes = require("./routes/measure1");
-const measure2Routes = require("./routes/measure2");
-const measure3Routes = require("./routes/measure3");
-const measure4Routes = require("./routes/measure4");
 
 const app = express();
 
@@ -48,21 +36,7 @@ app.use(
 app.use("/api/", generalApiLimiter);
 
 // Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/supplies", suppliesRoutes);
-app.use("/api/frontend", frontendRoutes);
-app.use("/api/activities", authenticateTokenFromCookies, activitiesRoutes);
-app.use("/api/measure1", measure1Routes);
-app.use("/api/measure2", measure2Routes);
-app.use("/api/measure3", measure3Routes);
-app.use("/api/measure4", measure4Routes);
-
-app.use(
-  "/api/smog_import",
-  authenticateTokenFromHeader,
-  externalApiLimiter,
-  smogImportRoutes
-);
+app.use("/api/dashboardsmog", diseaseRoutes);
 
 // Health Check Endpoint
 app.get("/api/health", (req, res) => {

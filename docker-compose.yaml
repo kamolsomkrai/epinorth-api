@@ -1,24 +1,12 @@
-# services:
-#    api:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#     container_name: express_api
-#     restart: unless-stopped
-#     ports:
-#       - "3006:3000"
-#     env_file:
-#       - .env
-
 services:
   api:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    container_name: express_api
+    container_name: epinorth-api
     restart: unless-stopped
     ports:
-      - "3006:3000"
+      - "3007:3000"
     env_file:
       - .env
     volumes:

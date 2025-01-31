@@ -1,0 +1,31 @@
+# services:
+#    api:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: express_api
+#     restart: unless-stopped
+#     ports:
+#       - "3006:3000"
+#     env_file:
+#       - .env
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: express_api
+    restart: unless-stopped
+    ports:
+      - "3006:3000"
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app # Mount โค้ดจากเครื่องโฮสต์ไปยังคอนเทนเนอร์
+      - /usr/src/app/node_modules # ป้องกันไม่ให้ node_modules ถูกเขียนทับ
+    networks:
+      - smog_nginx_network
+networks:
+  smog_nginx_network:
+    external: true

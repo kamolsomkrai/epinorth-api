@@ -1,0 +1,24 @@
+# Stage 1: Install dependencies
+FROM node:lts AS builder
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+# Stage 2: Development Image
+FROM node:lts
+
+WORKDIR /usr/src/app
+
+COPY --from=builder /usr/src/app /usr/src/app
+
+# ติดตั้ง nodemon แบบ global
+RUN npm install -g nodemon
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]

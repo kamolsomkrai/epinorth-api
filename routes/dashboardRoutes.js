@@ -1,8 +1,10 @@
-// routes/frontendRoutes.js
+// routes/dashboardRoutes.js
 const express = require("express");
-const { getDiseaseByHospital } = require("../controllers/dashboardController");
+const {
+  getDiseaseByHospitalController,
+} = require("../controllers/dashboardController");
 
 const router = express.Router();
 
-router.get("/diseasebyhospital", getDiseaseByHospital);
+router.get("/diseasebyhospital", getDiseaseByHospitalController);
 module.exports = router;

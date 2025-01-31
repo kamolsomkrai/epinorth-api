@@ -1,13 +1,7 @@
 // app.js
 const express = require("express");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const morgan = require("morgan");
-const helmet = require("helmet");
-const {
-  authenticateTokenFromHeader,
-  authenticateTokenFromCookies,
-} = require("./middlewares/authenticateToken");
+
 const { generalApiLimiter } = require("./middlewares/rateLimiter");
 const diseaseRoutes = require("./routes/dashboardRoutes");
 
@@ -16,11 +10,8 @@ const app = express();
 app.set("trust proxy", 1);
 
 // Middleware
-app.use(helmet());
 app.use(express.json({ limit: "200mb" }));
 app.use(express.urlencoded({ limit: "200mb", extended: true }));
-app.use(cookieParser());
-app.use(morgan("combined"));
 
 // CORS Configuration
 app.use(
